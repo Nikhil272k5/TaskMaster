@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f8fafc;
+  color: #334155;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  background: transparent;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+.fade-in { animation: fadeIn 0.4s ease-out; }
+.slide-in { animation: slideIn 0.3s ease-out; }
+
+.typing-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #6366f1;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.5); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* Node tooltip */
+.cy-tooltip {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 250px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  color: #334155;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Chat message */
+.msg-user {
+  background: #eff6ff;
+  color: #1e3a8a;
+  border: 1px solid #bfdbfe;
+  border-radius: 16px 16px 4px 16px;
+}
+.msg-assistant {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px 16px 16px 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Node type badge colors */
+.badge-salesorder { background: #eff6ff; color: #3b82f6; border-color: #bfdbfe; transition: all 0.3s; }
+.badge-delivery { background: #f0fdf4; color: #10b981; border-color: #bbf7d0; transition: all 0.3s; }
+.badge-billing { background: #fffbeb; color: #f59e0b; border-color: #fde68a; transition: all 0.3s; }
+.badge-customer { background: #faf5ff; color: #8b5cf6; border-color: #e9d5ff; transition: all 0.3s; }
+.badge-product { background: #ecfeff; color: #06b6d4; border-color: #a5f3fc; transition: all 0.3s; }
+.badge-plant { background: #fff1f2; color: #f43f5e; border-color: #fecdd3; transition: all 0.3s; }
+.badge-journalentry { background: #f8fafc; color: #64748b; border-color: #e2e8f0; transition: all 0.3s; }
+
+/* ─── SPACE MODE GLOBALS ─── */
+body.theme-space {
+  background: radial-gradient(circle at center, #0b0f1a, #000000);
+  color: #f8fafc;
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+body {
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/* Starfield Parallax */
+.stars {
+  background: transparent;
+}
+.stars-small { width: 1px; height: 1px; animation: animStar 50s linear infinite; }
+.stars-medium { width: 2px; height: 2px; animation: animStar 100s linear infinite; }
+.stars-large { width: 3px; height: 3px; animation: animStar 150s linear infinite; }
+
+@keyframes animStar {
+  from { transform: translateY(0px) translateX(0px); }
+  to { transform: translateY(-2000px) translateX(-500px); }
+}
+
+/* Space Mode Overrides */
+.theme-space .cy-tooltip {
+  background: rgba(15, 23, 42, 0.85); /* Slate 900 */
+  backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.theme-space .glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.theme-space .msg-user {
+  background: rgba(59, 130, 246, 0.15);
+  color: #bfdbfe;
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.theme-space .msg-assistant {
+  background: rgba(255, 255, 255, 0.03);
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-space .badge-salesorder { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); }
+.theme-space .badge-delivery { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); }
+.theme-space .badge-billing { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); }
+.theme-space .badge-customer { background: rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.3); }
+.theme-space .badge-product { background: rgba(6, 182, 212, 0.15); border-color: rgba(6, 182, 212, 0.3); }
+.theme-space .badge-plant { background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.3); }
+.theme-space .badge-journalentry { background: rgba(100, 116, 139, 0.15); color: #cbd5e1; border-color: rgba(100, 116, 139, 0.3); }
+
